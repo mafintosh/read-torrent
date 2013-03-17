@@ -36,7 +36,17 @@ The torrent result looks like this
 	}],
 	pieceLength: lengthOfAPiece,
 	pieces: [
-		'hex string of a sha1 hash of a piece'
+		// list of sha1 hex strings
 	]
 }
 ```
+
+# cli
+
+there is also a command-line interface available if you install it with `-g`
+
+	npm install -g read-torrent
+
+this installs a program called `read-torrent` that you simply pass a torrent file or url
+
+	read-torrent http://my-server.com/file.torrent

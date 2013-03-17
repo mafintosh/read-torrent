@@ -1,9 +1,12 @@
 {
   "name": "read-torrent",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "read and parse a torrent from a resource",
   "dependencies": {
     "bncode": "~0.2.3",
     "request": "~2.16.2"
+  },
+  "bin": {
+    "read-torrent":"./cli.js"
   }
 }
