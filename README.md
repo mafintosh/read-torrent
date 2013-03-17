@@ -41,7 +41,7 @@ The torrent result looks like this
 }
 ```
 
-# cli
+# command-line interface
 
 there is also a command-line interface available if you install it with `-g`
 
