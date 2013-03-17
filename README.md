@@ -50,3 +50,5 @@ there is also a command-line interface available if you install it with `-g`
 this installs a program called `read-torrent` that you simply pass a torrent file or url
 
 	read-torrent http://my-server.com/file.torrent
+
+this will print all meta info of the torrent file to the terminal
