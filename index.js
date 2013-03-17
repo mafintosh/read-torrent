@@ -17,7 +17,7 @@ var splitPieces = function(buffer) {
 };
 
 var toString = function(obj) {
-	return obj.toString();
+	return obj.toString().split(',')[0];
 };
 
 var parse = function(torrent) {
