@@ -1,6 +1,6 @@
 {
   "name": "read-torrent",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "read and parse a torrent from a resource",
   "dependencies": {
     "bncode": "~0.2.3",

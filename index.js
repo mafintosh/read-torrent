@@ -68,7 +68,7 @@ module.exports = function(url, callback) {
 		ondata(null, response.body);
 	};
 
-	if (Buffer.isBuffer(url)) return ondata(url);
+	if (Buffer.isBuffer(url)) return ondata(null, url);
 	if (/^https?:/.test(url)) return request(url, {encoding:null}, onresponse);
 
 	fs.readFile(url, ondata);
