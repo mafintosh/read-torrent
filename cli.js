@@ -24,5 +24,4 @@ readTorrent(process.argv[2], function(err, torrent) {
 	for (var i = 1; i < torrent.announce.length; i++) {
 		console.log('           '+torrent.announce[i]);
 	}
-//	console.log(torrent);
 });
