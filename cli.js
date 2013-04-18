@@ -15,9 +15,9 @@ readTorrent(process.argv[2], function(err, torrent) {
 	console.log('pieces:    '+torrent.pieces.length + ' x '+torrent.pieceLength);
 
 	console.log('name:      '+torrent.name);
-	console.log('files:     '+torrent.files[0].name);
+	console.log('files:     '+torrent.files[0].name+ ' ('+torrent.files[0].length+')');
 	for (var i = 1; i < torrent.files.length; i++) {
-		console.log('           '+torrent.files[i].name);
+		console.log('           '+torrent.files[i].name+ '('+torrent.files[i].length+')');
 	}
 
 	console.log('trackers:  '+torrent.announce[0]);
