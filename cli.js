@@ -9,6 +9,11 @@ var format = function(d) {
 	return pad(d.getUTCDate())+'/'+pad(d.getUTCMonth()+1)+'/'+d.getUTCFullYear();
 };
 
+if (!process.argv[2]) {
+	console.error('usage: read-torrent torrent');
+	process.exit(1);
+}
+
 readTorrent(process.argv[2], function(err, torrent) {
 	console.log('info hash: '+torrent.infoHash);
 	console.log('created:   '+format(torrent.created));
