@@ -33,7 +33,7 @@ var parse = function(torrent) {
 	result.name = name;
 
 	result.files = (torrent.info.files || [torrent.info]).map(function(file, i, files) {
-		var parts = [].concat(file.name || name, file.path || []).map(toString);
+		var parts = [].concat(file.name || name, file.path || []).map(function(p) { return p.toString() });
 		return {
 			path: path.join.apply(null, [path.sep].concat(parts)).slice(1),
 			name: parts.pop(),
