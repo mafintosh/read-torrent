@@ -2,6 +2,7 @@
   "name": "read-torrent",
   "version": "0.0.6",
   "description": "read and parse a torrent from a resource",
+  "repository": "git://github.com/mafintosh/read-torrent.git",
   "dependencies": {
     "bncode": "~0.2.3",
     "request": "~2.16.2"
