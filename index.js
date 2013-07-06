@@ -16,10 +16,6 @@ var splitPieces = function(buffer) {
 	return pieces;
 };
 
-var toString = function(obj) {
-	return obj.toString().split(',')[0];
-};
-
 var parse = function(torrent) {
 	torrent = bncode.decode(torrent);
 
@@ -27,13 +23,17 @@ var parse = function(torrent) {
 	var name = torrent.info.name.toString();
 
 	result.created = new Date(torrent['creation date'] * 1000);
-	result.announce = (torrent['announce-list'] || [torrent.announce]).map(toString);
+	result.announce = (torrent['announce-list'] || [torrent.announce]).map(function(obj) {
+		return obj.toString().split(',')[0];
+	});
 	result.infoHash = crypto.createHash('sha1').update(bncode.encode(torrent.info)).digest('hex');
 	result.private = !!torrent.info.private;
 	result.name = name;
 
 	result.files = (torrent.info.files || [torrent.info]).map(function(file, i, files) {
-		var parts = [].concat(file.name || name, file.path || []).map(function(p) { return p.toString() });
+		var parts = [].concat(file.name || name, file.path || []).map(function(p) {
+			return p.toString();
+		});
 		return {
 			path: path.join.apply(null, [path.sep].concat(parts)).slice(1),
 			name: parts.pop(),
