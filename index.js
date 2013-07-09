@@ -3,6 +3,7 @@ var bncode = require('bncode');
 var request = require('request');
 var path = require('path');
 var fs = require('fs');
+var zlib = require('zlib');
 
 var sumLength = function(sum, file) {
 	return sum + file.length;
@@ -51,7 +52,6 @@ var parse = function(torrent) {
 module.exports = function(url, callback) {
 	var ondata = function(err, data) {
 		if (err) return callback(err);
-
 		try {
 			data = parse(data);
 		} catch (err) {
@@ -64,6 +64,7 @@ module.exports = function(url, callback) {
 	var onresponse = function(err, response) {
 		if (err) return callback(err);
 		if (response.statusCode >= 400) return callback(new Error('bad status: '+response.statusCode));
+		if (response.headers['content-encoding'] === 'gzip') return zlib.gunzip(response.body, ondata);
 
 		ondata(null, response.body);
 	};
