@@ -43,7 +43,10 @@ var parse = function(torrent) {
 		};
 	});
 
+	var lastFile = result.files[result.files.length-1];
+
 	result.pieceLength = torrent.info['piece length'];
+	result.lastPieceLength = ((lastFile.offset + lastFile.length) % result.pieceLength) || result.pieceLength;
 	result.pieces = splitPieces(torrent.info.pieces);
 
 	return result;
