@@ -82,7 +82,13 @@ module.exports = function(url, callback) {
 	};
 
 	if (Buffer.isBuffer(url)) return ondata(null, url);
-	if (/^https?:/.test(url)) return request(url, {encoding:null}, onresponse);
+
+	var urlIsObject = (typeof url === 'object' && !(url instanceof String));
+	if (urlIsObject || /^https?:/.test(url)) {
+		var options = urlIsObject? url: {url:url};
+		options.encoding = null;
+		return request(options, onresponse);
+	}
 
 	fs.readFile(url, ondata);
 };
