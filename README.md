@@ -72,6 +72,19 @@ The torrent result looks like this:
 }
 ```
 
+For convenience, `read-torrent` also support reading magnet uri. Resulting information is limited, though.
+
+``` js
+// "Leaves of Grass" by Walt Whitman
+var uri = 'magnet:?xt=urn:btih:d2474e86c95b19b8bcfdb92bc12c9d44667cfa36&dn=Leaves+of+Grass+by+Walt+Whitman.epub&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
+
+readTorrent(uri, function(err, torrent) {
+  // we loaded a torrent from a magnet uri
+});
+```
+
+Resulting information depends on the contents of the URI, but `infoHash` is guaranteed for any valid magnet uri.
+
 ## Command-line interface
 
 There is also a command-line interface available if you install it with `-g`
@@ -86,4 +99,4 @@ This will print all meta info of the torrent file to the terminal
 
 ## Comments
 
-Thanks to https://github.com/feross for https://github.com/feross/parse-torrent
+Thanks to https://github.com/feross for `parse-torrent` and `magnet-uri`

@@ -5,7 +5,8 @@
   "repository": "git://github.com/mafintosh/read-torrent.git",
   "dependencies": {
     "request": "~2.16.2",
-    "parse-torrent": "~1.0.0"
+    "parse-torrent": "~1.0.0",
+    "magnet-uri": "^1.1.0"
   },
   "bin": {
     "read-torrent":"./cli.js"
