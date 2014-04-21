@@ -21,18 +21,28 @@ if (!process.argv[2]) {
 }
 
 readTorrent(process.argv[2], function(err, torrent) {
-	console.log('info hash: '+torrent.infoHash);
-	console.log('created:   '+formatDate(torrent.created));
-	console.log('pieces:    '+torrent.pieces.length + ' x '+formatSize(torrent.pieceLength));
 
-	console.log('name:      '+torrent.name);
-	console.log('files:     '+torrent.files[0].name+ ' ('+formatSize(torrent.files[0].length)+')');
-	for (var i = 1; i < torrent.files.length; i++) {
-		console.log('           '+torrent.files[i].name+ ' ('+formatSize(torrent.files[i].length)+')');
+	if (!!err) {
+		console.error(err);
+		process.exit(1);
 	}
 
-	console.log('trackers:  '+torrent.announce[0]);
-	for (var i = 1; i < torrent.announce.length; i++) {
-		console.log('           '+torrent.announce[i]);
+	if (torrent.infoHash) console.log('info hash: '+torrent.infoHash);
+	if (torrent.created)  console.log('created:   '+formatDate(torrent.created));
+	if (torrent.pieces)   console.log('pieces:    '+torrent.pieces.length + ' x '+formatSize(torrent.pieceLength));
+	if (torrent.name)     console.log('name:      '+torrent.name);
+	
+	if (torrent.files) {
+		console.log('files:     '+torrent.files[0].name+ ' ('+formatSize(torrent.files[0].length)+')');
+		for (var i = 1; i < torrent.files.length; i++) {
+			console.log('           '+torrent.files[i].name+ ' ('+formatSize(torrent.files[i].length)+')');
+		}
+	}
+
+	if (torrent.announce) {
+		console.log('trackers:  '+torrent.announce[0]);
+		for (var i = 1; i < torrent.announce.length; i++) {
+			console.log('           '+torrent.announce[i]);
+		}
 	}
 });
