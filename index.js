@@ -20,6 +20,17 @@ module.exports = function readTorrent (url, callback) {
 		asyncCallback(null, data);
 	};
 
+	var onMagnet = function (data) {
+		try {
+			var result = magnet(url);
+		} catch (e) {
+			return asyncCallback(e);
+		}
+
+		if (result) return asyncCallback(null, result);
+		asyncCallback(new Error('Malformed Magnet URI'));
+	};
+
 	var onResponse = function (err, response) {
 		if (err) return asyncCallback(err);
 		if (response.statusCode >= 400) return asyncCallback(new Error('Bad Response: '+response.statusCode));
@@ -29,10 +40,7 @@ module.exports = function readTorrent (url, callback) {
 
 	if (Buffer.isBuffer(url)) return onData(null, url);
 	if (/^https?:/.test(url)) return request(url, {encoding:null}, onResponse);
-	if (/^magnet:/.test(url)) {
-		try { var result = magnet(url); } catch(e) { return asyncCallback(e) }
-		if (!!result && result != {}) return asyncCallback(null, result)
-		return asyncCallback(new Error('Malformed Magnet URI'));
-	}
+	if (/^magnet:/.test(url)) return onMagnet(url);
+
 	fs.readFile(url, onData);
 };
