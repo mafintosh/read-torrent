@@ -1,6 +1,6 @@
 {
   "name": "read-torrent",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Read and parse a torrent from a resource.",
   "repository": "git://github.com/mafintosh/read-torrent.git",
   "dependencies": {
@@ -9,6 +9,6 @@
     "magnet-uri": "~2.0.0"
   },
   "bin": {
-    "read-torrent":"./cli.js"
+    "read-torrent": "./cli.js"
   }
 }
