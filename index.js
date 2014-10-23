@@ -6,18 +6,20 @@ var magnet = require('magnet-uri');
 
 module.exports = function readTorrent (url, callback) {
 	// Ensure true async callback, no matter what.
-	var asyncCallback = function(err, data) {
-		process.nextTick(function() { callback(err, data); });
+	var asyncCallback = function(err, result, data) {
+		process.nextTick(function() {
+      callback(err, result, data);
+    });
 	};
 
 	var onData = function (err, data) {
 		if (err) return asyncCallback(err);
 		try { 
-			data = parseTorrent(data); 
+			var result = parseTorrent(data); 
 		} catch (e) { 
 			return asyncCallback(e);
 		}
-		asyncCallback(null, data);
+		asyncCallback(null, result, data);
 	};
 
 	var onMagnet = function (data) {
@@ -27,7 +29,7 @@ module.exports = function readTorrent (url, callback) {
 			return asyncCallback(e);
 		}
 
-		if (result) return asyncCallback(null, result);
+		if (result) return asyncCallback(null, result, data);
 		asyncCallback(new Error('Malformed Magnet URI'));
 	};
 
