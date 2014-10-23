@@ -1,6 +1,6 @@
 {
   "name": "read-torrent",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Read and parse a torrent from a resource.",
   "repository": "git://github.com/mafintosh/read-torrent.git",
   "dependencies": {
