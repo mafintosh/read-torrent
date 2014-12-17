@@ -1,5 +1,5 @@
 var request = require('request');
-var _ = require('underscore');
+var extend = require('xtend');
 var fs = require('fs');
 var zlib = require('zlib');
 var parseTorrent = require('parse-torrent');
@@ -48,7 +48,7 @@ module.exports = function readTorrent(url, options, callback) {
     };
 
     if (Buffer.isBuffer(url)) return onData(null, url);
-    if (/^https?:/.test(url)) return request(_.extend({ url: url, encoding: null }, options), onResponse);
+    if (/^https?:/.test(url)) return request(extend({ url: url, encoding: null }, options), onResponse);
     if (/^magnet:/.test(url)) return onMagnet(url);
 
     fs.readFile(url, onData);

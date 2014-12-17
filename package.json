@@ -7,7 +7,7 @@
     "magnet-uri": "~2.0.0",
     "parse-torrent": "~1.0.0",
     "request": "~2.16.2",
-    "underscore": "^1.7.0"
+    "xtend": "^4.0.0"
   },
   "bin": {
     "read-torrent": "./cli.js"
