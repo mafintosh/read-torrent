@@ -9,7 +9,7 @@ Read and parse a torrent from a resource
 ``` js
 var readTorrent = require('read-torrent');
 
-readTorrent('http://my-server.com/file.torrent', function(err, torrent) {
+readTorrent('http://my-server.com/file.torrent', options, function(err, torrent) {
 	// we loaded a torrent from a server
 });
 
@@ -17,6 +17,7 @@ readTorrent('mydir/file.torrent', function(err, torrent) {
 	// we loaded a torrent from a file
 });
 ```
+where `options` is a javascript object with [request](https://www.npmjs.com/package/request) options
 
 The torrent result looks like this:
 
