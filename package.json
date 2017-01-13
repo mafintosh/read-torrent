@@ -4,10 +4,10 @@
   "description": "Read and parse a torrent from a resource.",
   "repository": "git://github.com/mafintosh/read-torrent.git",
   "dependencies": {
-    "magnet-uri": "~2.0.0",
-    "parse-torrent": "^4.0.0",
-    "request": "~2.16.2",
-    "xtend": "^4.0.0"
+    "magnet-uri": "^5.1.5",
+    "parse-torrent": "^5.8.1",
+    "request": "^2.79.0",
+    "xtend": "^4.0.1"
   },
   "bin": {
     "read-torrent": "./cli.js"
